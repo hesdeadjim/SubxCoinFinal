@@ -6,7 +6,9 @@ src/build.h
 src/obj/*.o
 src/obj/*.P
 src/obj/*.d
-src/zerocoin/*.*
+src/obj/zerocoin/*.o
+src/obj/zerocoin/*.P
+src/obj/zerocoin/*.d
 .*.swp
 *.*~*
 *.bak
