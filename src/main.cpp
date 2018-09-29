@@ -1015,10 +1015,7 @@ int64_t GetProofOfWorkReward(int64_t nFees)
 // miner's coin stake reward based on coin age spent (coin-days)
 int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees)
 {
-    int64_t nRewardCoinYear = 100 * CENT;
-    int64_t nSubsidy = nCoinAge * nRewardCoinYear / 365;
-
-    nSubsidy = nCoinAge * nRewardCoinYear / 365 * 1.5;
+    int64_t nSubsidy = nCoinAge * 33 / (365 * 33 + 8) * (150 * CENT); // 150% Forever
 
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfStakeReward(): create=%s nCoinAge=%"PRId64"\n", FormatMoney(nSubsidy).c_str(), nCoinAge);
@@ -2825,7 +2822,7 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // The message start string is designed to be unlikely to occur in normal data.
 // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
-unsigned char pchMessageStart[4] = { 0x9b, 0xd0, 0x18, 0xe9 };
+unsigned char pchMessageStart[4] = { 0x9c, 0xd0, 0x18, 0xe9 };
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 {
